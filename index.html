@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>لقطة - اشتري وبيع أي حاجة</title>
+<meta name="description" content="لقطة: سوق مفتوح لبيع وشراء المنتجات. التواصل مباشر مع البائع.">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F3F4F8;--sf:#fff;--ink:#14213D;--mute:#5F6B85;--line:#DFE2EB;--navy:#14213D;--navy-ink:#fff;--y:#FFC93C;--y-ink:#14213D;--bad:#C93C3C;--wa:#1FAF57}
+@media (prefers-color-scheme:dark){:root{--bg:#0E1424;--sf:#18213A;--ink:#EDF0F8;--mute:#A3AEC7;--line:#2B3656;--navy:#0A0F1D;--bad:#FF7A7A}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Tajawal,Tahoma,Arial,sans-serif;font-size:16px;line-height:1.55}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+header{position:sticky;top:0;z-index:20;background:var(--navy);color:var(--navy-ink);padding:10px 14px 12px}
+.top{display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:800;font-size:28px;display:flex;align-items:center;gap:8px}
+.logo i{background:var(--y);color:var(--y-ink);font-style:normal;font-size:15px;padding:1px 9px;border-radius:6px 14px 14px 6px}
+.btn{border:0;border-radius:12px;padding:9px 16px;font-weight:700;cursor:pointer;display:inline-block;text-align:center}
+.btn[disabled]{opacity:.55;cursor:default}
+.y{background:var(--y);color:var(--y-ink)}.out{background:transparent;border:1.5px solid var(--line)}.wa{background:var(--wa);color:#fff}
+.search{margin-top:10px;width:100%;border:0;border-radius:12px;padding:11px 14px;background:var(--sf);color:var(--ink)}
+main{max-width:980px;margin:0 auto;padding:14px;min-height:60vh}
+.hero{background:var(--navy);color:var(--navy-ink);border-radius:16px;padding:18px;margin-bottom:14px}
+.hero h1{margin:0 0 4px;font-size:24px}.hero p{margin:0;opacity:.85;font-size:15px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none}
+.chip{flex:none;border:1px solid var(--line);background:var(--sf);border-radius:99px;padding:6px 14px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.bar{display:flex;justify-content:space-between;align-items:center;margin:8px 0 12px;gap:8px}
+.bar h2{margin:0;font-size:18px}
+.f{border:1px solid var(--line);background:var(--sf);border-radius:10px;padding:9px 12px;width:100%}
+.bar .f{width:auto}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:640px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:900px){.grid{grid-template-columns:repeat(4,1fr)}}
+.card{background:var(--sf);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:block}
+.pic{height:120px;display:flex;align-items:center;justify-content:center;font-size:54px;position:relative;background:var(--bg)}
+.pic img,.big img{width:100%;height:100%;object-fit:cover}
+.sold{position:absolute;top:8px;inset-inline-start:8px;background:var(--bad);color:#fff;font-size:12px;font-weight:700;padding:2px 9px;border-radius:99px}
+.info{padding:10px 12px 12px}.name{font-weight:700;font-size:15px;line-height:1.35}
+.meta{color:var(--mute);font-size:13px}.price{font-weight:800;font-size:18px;margin-top:6px}
+.empty{grid-column:1/-1;text-align:center;color:var(--mute);padding:40px 10px}
+.box{background:var(--sf);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:12px}
+.big{height:260px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:110px;margin-bottom:12px;background:var(--sf);overflow:hidden}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.tag{background:var(--bg);border:1px solid var(--line);border-radius:99px;padding:2px 12px;font-size:13px}
+.pp{font-size:28px;font-weight:800}h1.t{margin:0;font-size:22px;line-height:1.35}
+.stack{display:flex;flex-direction:column;gap:10px}.row{display:flex;gap:8px}.row>*{flex:1}
+label{font-size:14px;color:var(--mute);display:flex;flex-direction:column;gap:4px}
+.link{color:var(--mute);font-size:14px;text-decoration:underline;background:none;border:0;cursor:pointer;padding:6px}
+.back{display:inline-block;margin-bottom:10px;color:var(--mute)}
+.mine{display:flex;gap:10px;align-items:center;border-bottom:1px solid var(--line);padding:10px 0}
+.mine .t{flex:1}.mine b{display:block}
+.th{width:44px;height:44px;border-radius:8px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:24px;overflow:hidden}
+.th img{width:100%;height:100%;object-fit:cover}
+.mini{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:5px 10px;cursor:pointer;font-size:13px}
+.note{font-size:13px;color:var(--mute)}
+ul.terms{padding-inline-start:20px;margin:6px 0}ul.terms li{margin:5px 0}
+footer{text-align:center;color:var(--mute);font-size:13px;padding:18px 14px 28px}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--y);outline-offset:2px}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:99px;font-weight:700;z-index:50;opacity:0;pointer-events:none;transition:opacity .2s;max-width:90vw;text-align:center}
+.toast.on{opacity:1}
+</style>
+</head>
+<body>
+<header>
+  <div class="top"><a class="logo" href="#home">لقطة<i>سوق</i></a><a class="btn y" href="#sell">+ بيع منتجك</a></div>
+  <input class="search" id="q" type="search" placeholder="ابحث عن منتج أو بائع..." aria-label="بحث">
+</header>
+<main id="app"><p class="note">جاري التحميل...</p></main>
+<footer>لقطة - سوق مفتوح للبيع والشراء. <a href="#terms" style="text-decoration:underline">الشروط والممنوعات</a></footer>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script>
+var SUPA_URL="https://fvypappxwrunniucggcf.supabase.co";
+var SUPA_KEY="sb_publishable_ljHF7lk7QnLyM3c7VXG_yw_tepfuul2";
+var CATS=["موبايلات","إلكترونيات","ملابس","أحذية","أجهزة منزلية","إكسسوارات","أدوات وعدد"];
+var CITIES=["القاهرة","الجيزة","الإسكندرية","المنصورة","أسيوط","مدينة أخرى"];
+var ICONS=["🏷️","📱","💻","🎧","⌚","👕","👖","👟","👜","🕶️","📷","🎮","🔧","🧹","🛋️","💡"];
+var sb=supabase.createClient(SUPA_URL,SUPA_KEY);
+var st={user:null,prof:null,list:[],cat:"الكل",q:"",sort:"new",busy:false,err:""};
+function $(i){return document.getElementById(i)}
+function esc(s){var d=document.createElement("div");d.textContent=String(s==null?"":s);return d.innerHTML}
+function fmt(n){return Number(n).toLocaleString("ar-EG")+" ج.م"}
+function toast(t){var e=$("toast");e.textContent=t;e.classList.add("on");setTimeout(function(){e.classList.remove("on")},2600)}
+function waNum(ph){var d=String(ph||"").replace(/\D/g,"");if(d.charAt(0)==="0")d="20"+d.slice(1);return d}
+function opts(a){return a.map(function(x){return"<option>"+esc(x)+"</option>"}).join("")}
+function img(p){return p.image_url&&String(p.image_url).indexOf(SUPA_URL+"/storage/")===0?'<img src="'+esc(p.image_url)+'" alt="'+esc(p.name)+'" loading="lazy">':esc(p.icon||"🏷️")}
+function card(p){return'<a class="card" href="#product-'+esc(p.id)+'"><div class="pic">'+img(p)+(p.sold?'<span class="sold">تم البيع</span>':'')+'</div><div class="info"><div class="name">'+esc(p.name)+'</div><div class="meta">'+esc(p.condition)+' · '+esc(p.city)+'</div><div class="price">'+fmt(p.price)+'</div></div></a>'}
+
+async function loadProf(){
+  st.prof=null;if(!st.user)return;
+  var r=await sb.from("profiles").select("*").eq("id",st.user.id).maybeSingle();
+  if(!r.error)st.prof=r.data}
+async function loadList(){
+  var r=await sb.from("products").select("*").order("created_at",{ascending:false}).limit(200);
+  if(r.error){st.err="تعذر تحميل المنتجات. تأكد من اتصال الإنترنت وجرّب تاني.";console.error(r.error)}else{st.err="";st.list=r.data||[]}}
+
+function home(){
+  var l=st.list.filter(function(p){return(st.cat==="الكل"||p.category===st.cat)&&(!st.q||p.name.indexOf(st.q)>-1||p.seller_name.indexOf(st.q)>-1)});
+  if(st.sort==="lo")l.sort(function(a,b){return a.price-b.price});
+  if(st.sort==="hi")l.sort(function(a,b){return b.price-a.price});
+  var ch=["الكل"].concat(CATS).map(function(c){return'<button class="chip" aria-pressed="'+(st.cat===c)+'" data-cat="'+esc(c)+'">'+esc(c)+'</button>'}).join("");
+  var body=st.err?'<div class="empty">'+esc(st.err)+'</div>':l.length?l.map(card).join(""):'<div class="empty">مفيش منتجات هنا لسه. كن أول بائع في التصنيف ده.</div>';
+  return'<section class="hero"><h1>لقطة بتستناك</h1><p>اشتري وبيع أي حاجة قريبة منك. البائع بيوصلك بنفسه والدفع عند الاستلام أو بالاتفاق.</p></section><div class="chips">'+ch+'</div><div class="bar"><h2>'+(st.cat==="الكل"?"كل المنتجات":esc(st.cat))+'</h2><select class="f" id="sort" aria-label="ترتيب"><option value="new"'+(st.sort==="new"?" selected":"")+'>الأحدث</option><option value="lo"'+(st.sort==="lo"?" selected":"")+'>الأرخص</option><option value="hi"'+(st.sort==="hi"?" selected":"")+'>الأغلى</option></select></div><div class="grid">'+body+'</div>'}
+
+function product(id){
+  var p=st.list.filter(function(x){return String(x.id)===String(id)})[0];
+  if(!p)return'<div class="box">المنتج ده مش موجود أو اتحذف. <a href="#home" style="text-decoration:underline">ارجع للرئيسية</a></div>';
+  var rel=st.list.filter(function(x){return x.category===p.category&&x.id!==p.id}).slice(0,4);
+  var msg=encodeURIComponent("السلام عليكم، شفت إعلان "+p.name+" بسعر "+fmt(p.price)+" على لقطة. لسه متاح؟");
+  var ph=waNum(p.seller_phone);
+  var act=p.sold?'<button class="btn out" disabled>تم بيع المنتج</button>':'<a class="btn wa" target="_blank" rel="noopener" href="https://wa.me/'+esc(ph)+'?text='+msg+'">اطلب من البائع عبر واتساب</a><a class="btn out" href="tel:+'+esc(ph)+'">اتصل بالبائع</a>';
+  return'<a class="back" href="#home">‹ رجوع</a><div class="big">'+img(p)+'</div><div class="box"><h1 class="t">'+esc(p.name)+'</h1><div class="pp">'+fmt(p.price)+'</div><div class="tags"><span class="tag">'+esc(p.condition)+'</span><span class="tag">'+esc(p.city)+'</span><span class="tag">'+esc(p.category)+'</span></div><p>'+esc(p.description||"لا يوجد وصف.")+'</p></div><div class="box stack"><b>البائع: '+esc(p.seller_name)+'</b><span class="note">التوصيل والدفع بيتم الاتفاق عليهم مباشرة مع البائع. افحص المنتج قبل الدفع.</span>'+act+'<button class="link" data-act="report" data-id="'+esc(p.id)+'">بلّغ عن الإعلان</button></div>'+(rel.length?'<div class="bar"><h2>منتجات مشابهة</h2></div><div class="grid">'+rel.map(card).join("")+'</div>':'')}
+
+function sell(){
+  if(!st.user)return'<div class="box stack"><h1 class="t">دخول البائعين</h1><p class="note">سجّل دخول أو اعمل حساب جديد عشان تعرض منتجاتك.</p><label>الإيميل<input class="f" id="em" type="email" autocomplete="email"></label><label>الباسورد (6 حروف على الأقل)<input class="f" id="pw" type="password" autocomplete="current-password"></label><div class="row"><button class="btn y" data-act="login">دخول</button><button class="btn out" data-act="signup">حساب جديد</button></div></div>';
+  if(!st.prof)return'<div class="box stack"><h1 class="t">كمّل بياناتك كبائع</h1><p class="note">الاسم والرقم بيظهروا للمشترين عشان يتواصلوا معاك.</p><label>اسمك أو اسم متجرك<input class="f" id="sn" maxlength="40"></label><label>رقم الموبايل (واتساب)<input class="f" id="sp" inputmode="tel" placeholder="01xxxxxxxxx"></label><label>المدينة<select class="f" id="sc">'+opts(CITIES)+'</select></label><button class="btn y" data-act="reg">حفظ</button><button class="link" data-act="out">تسجيل خروج</button></div>';
+  var mine=st.list.filter(function(p){return p.seller_id===st.user.id}).map(function(p){return'<div class="mine"><div class="th">'+img(p)+'</div><div class="t"><b>'+esc(p.name)+'</b><span class="note">'+fmt(p.price)+(p.sold?' · تم البيع':'')+'</span></div><button class="mini" data-act="sold" data-id="'+esc(p.id)+'">'+(p.sold?"إعادة عرض":"تم البيع")+'</button><button class="mini" data-act="del" data-id="'+esc(p.id)+'">حذف</button></div>'}).join("")||'<p class="note">لسه ماضفتش إعلانات.</p>';
+  return'<div class="box"><b>أهلا '+esc(st.prof.name)+'</b><div class="note">'+esc(st.prof.city)+' · '+esc(st.prof.phone)+'</div><button class="link" data-act="out">تسجيل خروج</button></div><div class="box stack"><h1 class="t">أضف منتج جديد</h1><label>اسم المنتج<input class="f" id="pn" maxlength="80"></label><div class="row"><label>السعر (ج.م)<input class="f" id="pp" type="number" min="1" inputmode="numeric"></label><label>الحالة<select class="f" id="pc">'+opts(["جديد","مستعمل"])+'</select></label></div><div class="row"><label>التصنيف<select class="f" id="pg">'+opts(CATS)+'</select></label><label>الرمز (لو مفيش صورة)<select class="f" id="pi">'+opts(ICONS)+'</select></label></div><label>صورة المنتج (اختياري، حتى 2 ميجا)<input class="f" id="pf" type="file" accept="image/jpeg,image/png,image/webp"></label><label>وصف المنتج<textarea class="f" id="pd" rows="3" maxlength="500"></textarea></label><p class="note">ممنوع الأكل والمنتجات المخالفة. اقرأ <a href="#terms" style="text-decoration:underline">الشروط</a> قبل النشر.</p><button class="btn y" id="pubBtn" data-act="pub">نشر الإعلان</button></div><div class="box"><h2 style="margin:0 0 4px;font-size:18px">إعلاناتي</h2>'+mine+'</div>'}
+
+function terms(){return'<a class="back" href="#home">‹ رجوع</a><div class="box"><h1 class="t">الشروط والممنوعات</h1><p class="note">نسخة مبدئية. لازم يراجعها مختص قانوني قبل الإطلاق الفعلي.</p><b>دور لقطة</b><ul class="terms"><li>لقطة منصة عرض بتجمع البائع بالمشتري، ومش طرف في عملية البيع.</li><li>البائع مسؤول عن صحة بيانات منتجه والتوصيل والضمان.</li><li>الدفع عند الاستلام أو بالاتفاق المباشر، ومفيش دفع إلكتروني على الموقع حاليا.</li></ul><b>ممنوع عرضه</b><ul class="terms"><li>الأكل والمشروبات.</li><li>الأسلحة والمواد الخطرة والمخدرات.</li><li>الأدوية والمنتجات الطبية بدون ترخيص.</li><li>المنتجات المسروقة أو المقلدة اللي بتنتحل ماركة.</li><li>أي منتج بيخالف القانون المصري.</li></ul><b>نصايح للمشتري</b><ul class="terms"><li>افحص المنتج قبل الدفع.</li><li>اتفق على سعر التوصيل من الأول.</li><li>بلّغنا عن أي إعلان مشبوه.</li></ul></div>'}
+
+function render(){
+  var h=(location.hash||"#home").slice(1),m=/^product-(\d+)$/.exec(h);
+  $("app").innerHTML=m?product(m[1]):h==="sell"?sell():h==="terms"?terms():home();
+  window.scrollTo(0,0)}
+function fail(e,msg){console.error(e);toast(msg||"حصلت مشكلة، جرّب تاني")}
+
+async function act(e){
+  var t=e.target.closest("[data-act],[data-cat]");if(!t)return;
+  var c=t.getAttribute("data-cat");if(c){st.cat=c;render();return}
+  var a=t.getAttribute("data-act"),id=t.getAttribute("data-id"),r;
+  if(a==="login"||a==="signup"){
+    var em=$("em").value.trim(),pw=$("pw").value;if(!em||pw.length<6){toast("اكتب إيميل وباسورد 6 حروف على الأقل");return}
+    r=a==="login"?await sb.auth.signInWithPassword({email:em,password:pw}):await sb.auth.signUp({email:em,password:pw});
+    if(r.error){fail(r.error,"تعذر الدخول. راجع الإيميل والباسورد");return}
+    if(a==="signup"&&!r.data.session)toast("اتبعتلك رسالة تأكيد على الإيميل. أكدها وبعدين سجّل دخول",1)}
+  else if(a==="out"){await sb.auth.signOut()}
+  else if(a==="reg"){
+    var n=$("sn").value.trim(),p=waNum($("sp").value);if(n.length<2||!/^[0-9]{10,15}$/.test(p)){toast("اكتب اسمك ورقم موبايل صحيح");return}
+    r=await sb.from("profiles").insert({id:st.user.id,name:n,phone:p,city:$("sc").value});
+    if(r.error){fail(r.error);return}await loadProf();render();toast("تم حفظ بياناتك")}
+  else if(a==="pub"){
+    var nm=$("pn").value.trim(),pr=Number($("pp").value),f=$("pf").files[0];
+    if(nm.length<2||!(pr>0)){toast("اكتب اسم المنتج والسعر");return}
+    if(f&&f.size>2097152){toast("الصورة أكبر من 2 ميجا");return}
+    var b=$("pubBtn");b.disabled=true;b.textContent="جاري النشر...";var url=null;
+    if(f){var ext=({"image/jpeg":"jpg","image/png":"png","image/webp":"webp"})[f.type];
+      if(!ext){toast("الصورة لازم تكون JPG أو PNG أو WEBP");b.disabled=false;b.textContent="نشر الإعلان";return}
+      var path=st.user.id+"/"+Date.now()+"."+ext;
+      r=await sb.storage.from("product-images").upload(path,f,{contentType:f.type});
+      if(r.error){fail(r.error,"تعذر رفع الصورة");b.disabled=false;b.textContent="نشر الإعلان";return}
+      url=sb.storage.from("product-images").getPublicUrl(path).data.publicUrl}
+    r=await sb.from("products").insert({seller_name:st.prof.name,seller_phone:st.prof.phone,name:nm,price:pr,category:$("pg").value,condition:$("pc").value,city:st.prof.city,description:$("pd").value.trim(),icon:$("pi").value,image_url:url});
+    if(r.error){fail(r.error);b.disabled=false;b.textContent="نشر الإعلان";return}
+    await loadList();render();toast("تم نشر إعلانك")}
+  else if(a==="sold"){var x=st.list.filter(function(p){return String(p.id)===id})[0];if(!x)return;
+    r=await sb.from("products").update({sold:!x.sold}).eq("id",id);if(r.error){fail(r.error);return}await loadList();render()}
+  else if(a==="del"){if(!confirm("حذف الإعلان نهائيا؟"))return;
+    r=await sb.from("products").delete().eq("id",id);if(r.error){fail(r.error);return}await loadList();render()}
+  else if(a==="report"){r=await sb.from("reports").insert({product_id:Number(id),reason:"بلاغ من مستخدم"});
+    if(r.error){fail(r.error);return}toast("وصلنا بلاغك، شكرا")}}
+
+document.addEventListener("click",function(e){act(e).catch(function(x){fail(x)})});
+document.addEventListener("change",function(e){if(e.target.id==="sort"){st.sort=e.target.value;render()}});
+$("q").oninput=function(){st.q=this.value.trim();if((location.hash||"#home")!=="#home"){location.hash="home"}else render()};
+window.addEventListener("hashchange",render);
+sb.auth.onAuthStateChange(function(ev,s){st.user=s?s.user:null;setTimeout(function(){loadProf().then(render)},0)});
+(async function(){
+  try{var s=await sb.auth.getSession();st.user=s.data.session?s.data.session.user:null;await loadProf();await loadList()}catch(e){st.err="تعذر الاتصال بالخادم.";console.error(e)}
+  render()})();
+</script>
+</body>
+</html>
